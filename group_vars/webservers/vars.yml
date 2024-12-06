@@ -1,0 +1,23 @@
+---
+# Pip packages configuration
+pip_install_packages:
+  - name: docker
+
+# Docker configuration
+docker_users:
+  - "{{ ansible_user }}"
+docker_install_compose: true
+
+# PostgreSQL Connection Details
+postgres_host: "{{ vault_postgres_host }}"
+postgres_user: "{{ vault_postgres_user }}"
+postgres_password: "{{ vault_postgres_password }}"
+postgres_db: "{{ vault_postgres_db }}"
+
+# Redmine Configuration
+redmine_secret_key_base: "{{ vault_redmine_secret_key_base }}"
+
+# Datadog Configuration
+datadog_api_key: '{{ datadog_api_key_private }}'
+datadog_app_key: '{{ datadog_app_key_private }}'
+datadog_site: 'eu1.datadoghq.com'

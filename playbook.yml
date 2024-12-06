@@ -4,6 +4,7 @@
   become: yes
   roles:
     - geerlingguy.pip
+    - geerlingguy.docker
 
   tasks:
     - name: Install Docker pip module

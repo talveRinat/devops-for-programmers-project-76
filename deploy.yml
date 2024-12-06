@@ -1,0 +1,53 @@
+---
+- hosts: all
+  become: yes
+  tags: deploy
+
+  vars:
+    container_name: redmine
+    image_name: redmine:5.1
+    container_port: 3000
+    host_port: 80
+  
+  tasks:
+    - name: create env
+      ansible.builtin.template:
+        src: templates/redmine.env.j2
+        dest: .env
+        mode: "0600"
+
+    - name: Pull Redmine image
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
+        force_source: yes
+
+    - name: Ensure Redmine container is running
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        published_ports:
+          - "{{ host_port }}:{{ container_port }}"
+        env_file: ".env"
+
+- hosts: webservers
+  become: true
+  tags:
+        - prepare-servers
+  roles:
+    - datadog.datadog
+  tasks:
+    - name: Copy datadog config
+      ansible.builtin.template:
+          src: datadog.yaml.j2
+          dest: /etc/datadog-agent/conf.d/http_check.d/conf.yaml
+          owner: root
+          group: root
+          mode: 0644 
+
+    - name: Start Datadog agent
+      service:
+        name: datadog-agent
+        state: restarted
+        enabled: yes

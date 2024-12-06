@@ -2,6 +2,8 @@
 
 This project automates Docker image deployment on servers using Ansible. The infrastructure is deployed on Yandex.Cloud using managed services.
 
+## Application link
+www.devops-rinat.fun
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/talveRinat/devops-for-programmers-project-76/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/talveRinat/devops-for-programmers-project-76/actions)
@@ -43,7 +45,7 @@ This project uses `uv` for managing Python virtual environments and dependencies
 
 2. Create virtual environment and install dependencies:
    ```bash
-   make deps
+   make add-ansible
    ```
 
 This will:
@@ -54,46 +56,44 @@ This will:
 
 ```
 .
-├── inventory.ini      # Server inventory file
-├── playbook.yml      # Main playbook
-├── requirements.yml  # Ansible Galaxy requirements
-├── group_vars/      # Variables directory
-│   └── webservers.yml
-├── Makefile         # Automation commands
-└── README.md        # Project documentation
+├── Makefile               # Automation commands
+├── README.md              # Project documentation
+├── ansible.cfg
+├── deploy.yml             # Server deployment playbook
+├── group_vars             # Variables directory
+│   ├── all.yml            # Ansible config
+│   └── webservers
+│       ├── vars.yml       # Server config
+│       └── vault.yml
+├── inventory.ini          # Server inventory file
+├── playbook.yml           # Main playbook
+├── requirements.yml       # Ansible Galaxy requirements
+└── templates
+    ├── datadog.yaml.j2
+    └── redmine.env.j2      
 ```
 
 ## Initial Setup
 
 1. Clone this repository
 2. Edit the `inventory.ini` file to specify your server IPs
-3. Create Python environment and install dependencies:
+3. Prepare servers:
    ```bash
-   make deps
-   ```
-4. Prepare servers:
-   ```bash
-   make prepare
+   make prepare-servers
    ```
 
-## Available Make Commands
+## Quick Start
 
-- `make venv` - Creates Python 3.12 virtual environment using uv
-- `make deps` - Creates venv and installs Ansible
-- `make prepare` - Installs required Ansible Galaxy roles and executes the playbook
+1. Local Development:
+   ```bash
+   docker run -d --name redmine -p 3000:3000 redmine:latest
+   ```
 
-## Usage
-
-Complete setup and server configuration:
-```bash
-make prepare
-```
-
-This will:
-1. Create Python 3.12 virtual environment if not exists
-2. Install Ansible using uv
-3. Install required Ansible Galaxy roles
-4. Execute the playbook to configure servers
+2. Production Deployment:
+   ```bash
+   # Deploy Redmine
+   make deploy
+   ```
 
 ## Notes
 
