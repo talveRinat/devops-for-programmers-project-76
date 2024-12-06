@@ -14,18 +14,12 @@ www.devops-rinat.fun
 The project uses the following Yandex.Cloud services:
 
 1. Application Load Balancer (ALB)
-   - Distributes incoming traffic between web servers
-   - Provides SSL/TLS termination
-   - Enables health checking for backend servers
 
 2. Managed Service for PostgreSQL
-   - Managed PostgreSQL cluster
-   - Automated backups and maintenance
-   - High availability configuration
 
 3. Compute Cloud (Virtual Machines)
    - Two virtual machines for web servers
-   - Located in different availability zones for redundancy
+
 
 ## Prerequisites
 
