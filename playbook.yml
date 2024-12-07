@@ -1,13 +1,39 @@
 ---
-- name: Configure servers
-  hosts: all
+- hosts: all
   become: yes
-  roles:
-    - geerlingguy.pip
-    - geerlingguy.docker
-
+  tags: deploy
+  
   tasks:
-    - name: Install Docker pip module
-      pip:
-        name: docker
-        state: present
+    - name: create env
+      ansible.builtin.template:
+        src: templates/redmine.env.j2
+        dest: .env
+        mode: "0600"
+
+    - name: Pull Redmine image
+      docker_image:
+        name: "{{ image_name }}"
+        source: pull
+        force_source: yes
+
+    - name: Ensure Redmine container is running
+      docker_container:
+        name: "{{ container_name }}"
+        image: "{{ image_name }}"
+        state: started
+        published_ports:
+          - "{{ host_port }}:{{ container_port }}"
+        env_file: ".env"
+
+- hosts: webservers
+  become: true
+  tags:
+        - datadog
+  roles:
+    - datadog.datadog
+  tasks:
+    - name: Start Datadog agent
+      service:
+        name: datadog-agent
+        state: restarted
+        enabled: yes

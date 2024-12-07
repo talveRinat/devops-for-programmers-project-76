@@ -164,3 +164,4 @@ cython_debug/
 
 .vault-pass
 *.retry
+.vscode

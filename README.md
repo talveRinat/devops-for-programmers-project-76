@@ -70,10 +70,16 @@ This will:
 ## Initial Setup
 
 1. Clone this repository
+2. Rekeying Encrypted Files `group_vars/webservers/vault.yml`
 2. Edit the `inventory.ini` file to specify your server IPs
-3. Prepare servers:
+3. Edit the `group_vars/all/vars.yml` file to specify ansible root name
+4. Prepare ansible galaxy roles
    ```bash
-   make prepare-servers
+   make ansible-roles
+   ```
+5. Prepare servers:
+   ```bash
+   make setup-servers
    ```
 
 ## Quick Start
@@ -86,7 +92,10 @@ This will:
 2. Production Deployment:
    ```bash
    # Deploy Redmine
-   make deploy
+   make deploy-services
+
+   # Add datadog monitore service
+   make add-datadog
    ```
 
 ## Notes
@@ -94,3 +103,4 @@ This will:
 - The virtual environment is created in `.venv` directory using Python 3.12
 - Always activate the virtual environment when running commands manually: `. .venv/bin/activate`
 - Add `.venv` to your .gitignore file
+- Add `.vault-pss` to your .gitignore file

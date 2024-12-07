@@ -1,0 +1,13 @@
+---
+- name: Configure servers
+  hosts: all
+  become: yes
+  roles:
+    - geerlingguy.pip
+    - geerlingguy.docker
+
+  tasks:
+    - name: Install Docker pip module
+      pip:
+        name: docker
+        state: present
