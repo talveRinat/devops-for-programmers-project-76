@@ -12,10 +12,10 @@ ansible-roles: add-ansible
 	$(RUN) ansible-galaxy install -r requirements.yml
 
 setup-servers:
-	$(RUN) ansible-playbook -i inventory.ini setup.yml
+	$(RUN) ansible-playbook setup.yml
 
 deploy-services:
-	$(RUN) ansible-playbook -i inventory.ini playbook.yml --tag=deploy
+	$(RUN) ansible-playbook playbook.yml --tag=deploy
 
 add-datadog:
 	$(RUN) ansible-playbook playbook.yml --tags=datadog
