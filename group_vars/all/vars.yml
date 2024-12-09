@@ -9,6 +9,7 @@ docker_install_compose: true
 
 # PostgreSQL Connection Details
 postgres_host: "{{ vault_postgres_host }}"
+postgres_port: "6432" # https://yandex.cloud/ru/docs/managed-postgresql/operations/connect#cloud_1
 postgres_user: "{{ vault_postgres_user }}"
 postgres_password: "{{ vault_postgres_password }}"
 postgres_db: "{{ vault_postgres_db }}"

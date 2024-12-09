@@ -3,7 +3,7 @@
 This project automates Docker image deployment on servers using Ansible. The infrastructure is deployed on Yandex.Cloud using managed services.
 
 ## Application link
-www.devops-rinat.fun
+devops-rinat.fun
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/talveRinat/devops-for-programmers-project-76/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/talveRinat/devops-for-programmers-project-76/actions)
@@ -20,6 +20,15 @@ The project uses the following Yandex.Cloud services:
 3. Compute Cloud (Virtual Machines)
    - Two virtual machines for web servers
 
+### Balancing map
+
+[balancing_map](img/balancing_map.png)
+
+## Setup DNS, NS, A-type
+
+[dns](img/dns.png)
+
+[ns](img/regru.png)
 
 ## Prerequisites
 
@@ -104,3 +113,7 @@ This will:
 - Always activate the virtual environment when running commands manually: `. .venv/bin/activate`
 - Add `.venv` to your .gitignore file
 - Add `.vault-pss` to your .gitignore file
+
+
+## Result 
+[result](img/result.png)
