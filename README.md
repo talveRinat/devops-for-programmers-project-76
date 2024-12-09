@@ -22,13 +22,13 @@ The project uses the following Yandex.Cloud services:
 
 ### Balancing map
 
-[balancing_map](img/balancing_map.png)
+![balancing_map](img/balancing_map.png)
 
 ## Setup DNS, NS, A-type
 
-[dns](img/dns.png)
+![dns](img/dns.png)
 
-[ns](img/regru.png)
+![ns](img/regru.png)
 
 ## Prerequisites
 
@@ -116,4 +116,4 @@ This will:
 
 
 ## Result 
-[result](img/result.png)
+![result](img/result.png)
